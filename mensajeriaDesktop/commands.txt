@@ -1,0 +1,19 @@
+Conexión al web service
+    Generar .cs
+    | wsdl http://localhost:8080/mensajeria/websrvSearch?wsdl
+
+    Generar .dll
+    | mcs /target:library websrvSearch.cs -r:System.Web.Services
+
+Compilar y ejecutar    
+    Compilar normal
+    | mcs -debug msgApp.cs -pkg:dotnet
+
+    Compilar con dll
+    | mcs /r:websrvSearch.dll msgApp.cs -pkg:dotnet
+    | mcs /r:websrvSearch.dll, /r:websrvMensaje.dll  msgApp.cs -pkg:dotnet
+
+    Ejecutar .exe
+    | mono msgApp.exe
+
+   mcs /target:library websrvMensaje.cs -r:System.Web.Services
